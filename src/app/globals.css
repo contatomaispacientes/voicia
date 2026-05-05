@@ -1,26 +1,221 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand: #63AAA2;
+  --color-brand-light: #7BBFBA;
+  --color-brand-dark: #4A8F8A;
+  --color-navy: #24425C;
+  --color-navy-light: #2D5575;
+  --color-navy-dark: #1A3347;
+  --color-surface: #080C15;
+  --color-surface-2: #0E1725;
+  --color-surface-3: #151F30;
+  --color-surface-4: #1A2438;
+  --color-muted: #64748B;
+  --color-subtle: #94A3B8;
+  --color-line: #1E293B;
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-jakarta);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #080C15;
+  color: #F1F5F9;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "cv11";
 }
+
+h1, h2, h3 {
+  font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+::selection { background: rgba(99,170,162,0.3); }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #080C15; }
+::-webkit-scrollbar-thumb { background: #24425C; border-radius: 3px; }
+
+/* ─── Grain / noise overlay ─────────────────────────────── */
+.grain {
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ─── Dot grid background ───────────────────────────────── */
+.dotgrid {
+  background-image: radial-gradient(rgba(99,170,162,0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ─── Honeycomb pattern ─────────────────────────────────── */
+.honeycomb {
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='52' viewBox='0 0 60 52'%3E%3Cpath d='M30 0l26 15v22L30 52 4 37V15z' fill='none' stroke='%2363AAA2' stroke-opacity='0.12' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 60px 52px;
+}
+
+/* ─── Atmospheric glows ─────────────────────────────────── */
+.atmo-glow {
+  background:
+    radial-gradient(ellipse 85% 55% at 50% 100%, rgba(99,170,162,0.28) 0%, rgba(99,170,162,0.10) 38%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 50% 100%, rgba(123,191,186,0.22) 0%, transparent 60%);
+}
+
+.atmo-glow-top {
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(99,170,162,0.20) 0%, transparent 60%);
+}
+
+/* ─── Section label pill (eyebrow) ──────────────────────── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(99,170,162,0.22);
+  background: rgba(99,170,162,0.05);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #7BBFBA;
+  backdrop-filter: blur(4px);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 999px;
+  background: #63AAA2;
+  box-shadow: 0 0 8px rgba(99,170,162,0.8);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+/* Section number (01, 02, etc) */
+.sec-num {
+  font-family: var(--font-jakarta);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: rgba(99,170,162,0.5);
+}
+
+/* ─── Card base with luminous border ────────────────────── */
+.lum-card {
+  position: relative;
+  border-radius: 1.25rem;
+  background: linear-gradient(180deg, #0E1725 0%, #0A1220 100%);
+  border: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+  transition: border-color 300ms ease, transform 300ms ease;
+}
+
+.lum-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(180deg, rgba(99,170,162,0.35), rgba(99,170,162,0) 40%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 400ms ease;
+  pointer-events: none;
+}
+
+.lum-card:hover::before { opacity: 1; }
+.lum-card:hover { border-color: rgba(99,170,162,0.20); transform: translateY(-2px); }
+
+/* Bottom glow that follows the card (like the reference) */
+.lum-card::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -40px;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 80px;
+  background: radial-gradient(ellipse at center, rgba(99,170,162,0.22), transparent 70%);
+  opacity: 0;
+  transition: opacity 500ms ease;
+  pointer-events: none;
+  filter: blur(20px);
+}
+
+.lum-card:hover::after { opacity: 1; }
+
+/* ─── Decorative corner brackets ────────────────────────── */
+.brackets {
+  position: relative;
+}
+.brackets::before,
+.brackets::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgba(99,170,162,0.5);
+}
+.brackets::before { top: 0; left: 0; border-right: none; border-bottom: none; }
+.brackets::after { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+/* ─── Text gradient utilities ───────────────────────────── */
+.grad-text {
+  background: linear-gradient(180deg, #F1F5F9 0%, #94A3B8 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+
+.accent-text {
+  background: linear-gradient(90deg, #7BBFBA 0%, #63AAA2 50%, #4A8F8A 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+
+/* ─── Marquee animation for logo strip ──────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee { animation: marquee 30s linear infinite; }
+
+/* ─── Halo icon container ───────────────────────────────── */
+.halo-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(99,170,162,0.18), rgba(99,170,162,0.04));
+  border: 1px solid rgba(99,170,162,0.22);
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 4px rgba(99,170,162,0.03),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.halo-icon::after {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  border-radius: inherit;
+  background: radial-gradient(circle at center, rgba(99,170,162,0.35), transparent 60%);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 400ms ease;
+  filter: blur(12px);
+}
+
+.group:hover .halo-icon::after { opacity: 1; }
+
