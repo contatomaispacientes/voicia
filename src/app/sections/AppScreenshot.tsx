@@ -1,11 +1,8 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 export default function AppScreenshot() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -99,18 +96,21 @@ export default function AppScreenshot() {
           </div>
         </div>
 
-        {/* Screenshot image */}
-        <Image
-          ref={imgRef}
-          src="/app-screenshot.png"
-          alt="VoicIA - Interface do sistema de suporte médico"
-          width={1600}
-          height={900}
-          priority
-          sizes="(min-width: 1024px) 1024px, 100vw"
-          className="w-full h-auto block"
-          draggable={false}
-        />
+        {/* Screenshot image — serve WebP quando suportado */}
+        <picture>
+          <source srcSet="/app-screenshot.webp" type="image/webp" />
+          <Image
+            ref={imgRef}
+            src="/app-screenshot.png"
+            alt="VoicIA - Interface do sistema de suporte médico"
+            width={1600}
+            height={900}
+            priority
+            sizes="(min-width: 1024px) 1024px, 100vw"
+            className="w-full h-auto block"
+            draggable={false}
+          />
+        </picture>
       </div>
 
     </div>

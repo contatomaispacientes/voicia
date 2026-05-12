@@ -1,8 +1,8 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import gsap from "gsap";
+import { gsap } from "@/lib/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SonicWaveformCanvas from "@/components/ui/sonic-waveform";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";

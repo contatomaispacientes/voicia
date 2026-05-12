@@ -39,20 +39,21 @@ const SonicWaveformCanvas: React.FC<SonicWaveformCanvasProps> = ({
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
     if (isMobile) return;
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
     let animationFrameId: number;
+    let startTimer: ReturnType<typeof setTimeout>;
     const mouse = { x: canvas.width / 2, y: canvas.height / 2 };
     let time = 0;
     let isVisible = true;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const [r, g, b] = color;
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
-
-    const [r, g, b] = color;
 
     const draw = () => {
       if (!isVisible || document.hidden) {
@@ -60,7 +61,6 @@ const SonicWaveformCanvas: React.FC<SonicWaveformCanvasProps> = ({
         return;
       }
 
-      // Clear frame completely — no trail/smear
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const segmentCount = 80;
@@ -75,24 +75,13 @@ const SonicWaveformCanvas: React.FC<SonicWaveformCanvasProps> = ({
 
         for (let j = 0; j <= segmentCount; j++) {
           const x = (j / segmentCount) * canvas.width;
-
-          // Mouse influence
           const distToMouse = Math.hypot(x - mouse.x, height - mouse.y);
           const mouseEffect = Math.max(0, 1 - distToMouse / 400);
-
-          // Wave calculation
           const noise = Math.sin(j * 0.1 + time + i * 0.2) * 20;
-          const spike =
-            Math.cos(j * 0.2 + time + i * 0.1) *
-            Math.sin(j * 0.05 + time) *
-            50;
+          const spike = Math.cos(j * 0.2 + time + i * 0.1) * Math.sin(j * 0.05 + time) * 50;
           const y = height + noise + spike * (1 + mouseEffect * 2);
-
-          if (j === 0) {
-            ctx.moveTo(x, y);
-          } else {
-            ctx.lineTo(x, y);
-          }
+          if (j === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
         }
         ctx.stroke();
       }
@@ -106,11 +95,8 @@ const SonicWaveformCanvas: React.FC<SonicWaveformCanvasProps> = ({
       mouse.y = event.clientY;
     };
 
-    // Pause rendering when canvas is offscreen
     const io = new IntersectionObserver(
-      ([entry]) => {
-        isVisible = entry.isIntersecting;
-      },
+      ([entry]) => { isVisible = entry.isIntersecting; },
       { rootMargin: "100px" }
     );
     io.observe(canvas);
@@ -118,10 +104,14 @@ const SonicWaveformCanvas: React.FC<SonicWaveformCanvasProps> = ({
     window.addEventListener("resize", resizeCanvas);
     window.addEventListener("mousemove", handleMouseMove);
 
-    resizeCanvas();
-    draw();
+    // Defer canvas start by 1s so it doesn't compete with LCP
+    startTimer = setTimeout(() => {
+      resizeCanvas();
+      draw();
+    }, 1000);
 
     return () => {
+      clearTimeout(startTimer);
       cancelAnimationFrame(animationFrameId);
       io.disconnect();
       window.removeEventListener("resize", resizeCanvas);

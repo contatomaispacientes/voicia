@@ -1,7 +1,7 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState, useMemo } from "react";
-import gsap from "gsap";
+import { gsap } from "@/lib/gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Nav from "../sections/Nav";
 import Footer from "../sections/Footer";

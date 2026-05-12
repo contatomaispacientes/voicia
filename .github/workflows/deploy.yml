@@ -29,7 +29,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # 4. Build estático (gera pasta out/)
+      # 4. Converte imagens PNG → WebP (reduz 60-80% do tamanho)
+      - name: Install WebP tools
+        run: sudo apt-get install -y webp
+
+      - name: Convert images to WebP
+        run: |
+          cwebp -q 82 public/app-screenshot.png -o public/app-screenshot.webp
+          cwebp -q 82 public/logo-icon.png -o public/logo-icon.webp
+          echo "✅ WebP conversion complete"
+          ls -lh public/*.webp
+
+      # 5. Build estático (gera pasta out/)
       - name: Build Next.js
         run: npm run build
 
