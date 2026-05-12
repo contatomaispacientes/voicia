@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -33,29 +33,29 @@ export default function SplitText({
     const chars = Array.from(el.querySelectorAll<HTMLSpanElement>(".st-char"));
     const cursor = el.querySelector<HTMLSpanElement>(".st-cursor");
 
-    // Initial: chars hidden, cursor hidden (if present)
-    gsap.set(chars, { visibility: "hidden" });
+    // Use opacity instead of visibility — more reliable on iOS Safari
+    gsap.set(chars, { opacity: 0 });
 
     if (cursor) {
-      gsap.set(cursor, { visibility: "hidden", display: "inline-block", opacity: 1 });
-      // Insert cursor at start so it can travel along with the text
+      gsap.set(cursor, { opacity: 0, display: "inline-block" });
       if (chars[0]?.parentNode) {
         chars[0].parentNode.insertBefore(cursor, chars[0]);
       }
     }
 
-    // Master timeline — deterministic step-by-step reveal
     const tl = gsap.timeline({ delay });
 
+    // Show cursor at the start
     if (cursor) {
-      tl.set(cursor, { visibility: "visible" }, 0);
+      tl.set(cursor, { opacity: 1 }, 0);
     }
 
     chars.forEach((char, i) => {
       const t = i * stagger;
-      tl.set(char, { visibility: "visible" }, t);
+      // Reveal character
+      tl.set(char, { opacity: 1 }, t);
+      // Move cursor after this character
       if (cursor) {
-        // Move cursor to just after this char at the same instant it's revealed
         tl.call(
           () => {
             if (char.parentNode) {
@@ -74,7 +74,6 @@ export default function SplitText({
       if (hideCursorOnComplete) {
         tl.set(cursor, { display: "none" }, totalTime);
       } else {
-        // Blink for a few seconds, then disappear
         tl.to(
           cursor,
           { opacity: 0, repeat: 5, yoyo: true, duration: 0.5, ease: "steps(1)" },
@@ -89,7 +88,6 @@ export default function SplitText({
     };
   }, [delay, stagger, text, hideCursorOnComplete]);
 
-  // Group chars into words to prevent mid-word line breaks
   const words = text.split(" ");
   const chars: React.ReactNode[] = [];
 
@@ -98,7 +96,7 @@ export default function SplitText({
       <span
         key={`${wi}-${ci}`}
         className={`st-char inline-block ${charClassName}`}
-        style={{ visibility: "hidden" }}
+        style={{ opacity: 0 }}
       >
         {char}
       </span>
@@ -115,9 +113,9 @@ export default function SplitText({
         <span
           key={`s${wi}`}
           className={`st-char inline-block ${charClassName}`}
-          style={{ visibility: "hidden", whiteSpace: "pre" }}
+          style={{ opacity: 0, whiteSpace: "pre" }}
         >
-          {"\u00A0"}
+          {" "}
         </span>
       );
     }
@@ -129,7 +127,7 @@ export default function SplitText({
       {showCursor && (
         <span
           className="st-cursor inline-block w-[3px] h-[0.8em] bg-[#63AAA2] ml-[2px] align-middle"
-          style={{ visibility: "hidden" }}
+          style={{ opacity: 0 }}
         />
       )}
     </Tag>
