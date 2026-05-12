@@ -40,7 +40,6 @@ const SonicWaveformCanvas: React.FC<SonicWaveformCanvasProps> = ({
     if (isMobile) return;
 
     let animationFrameId: number;
-    let startTimer: ReturnType<typeof setTimeout>;
     const mouse = { x: canvas.width / 2, y: canvas.height / 2 };
     let time = 0;
     let isVisible = true;
@@ -104,14 +103,10 @@ const SonicWaveformCanvas: React.FC<SonicWaveformCanvasProps> = ({
     window.addEventListener("resize", resizeCanvas);
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Defer canvas start by 1s so it doesn't compete with LCP
-    startTimer = setTimeout(() => {
-      resizeCanvas();
-      draw();
-    }, 1000);
+    resizeCanvas();
+    draw();
 
     return () => {
-      clearTimeout(startTimer);
       cancelAnimationFrame(animationFrameId);
       io.disconnect();
       window.removeEventListener("resize", resizeCanvas);

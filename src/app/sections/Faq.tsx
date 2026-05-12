@@ -1,7 +1,10 @@
 ﻿"use client";
 
 import { useState, useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const faqs = [
   { q: "Quais integrações vocês aceitam e como funciona?", a: "A VoicIA integra com os principais sistemas de gestão clínica do mercado. A integração é feita via API segura e nosso time de suporte acompanha todo o processo de configuração." },

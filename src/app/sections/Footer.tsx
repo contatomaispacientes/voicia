@@ -2,7 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const links: Record<string, string[]> = {
   Produto: ["Soluções", "Preços", "Integrações", "Atualizações"],

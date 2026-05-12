@@ -1,7 +1,10 @@
 ﻿"use client";
 
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const data = [
   { value: 500, suffix: "+", label: "Médicos ativos" },

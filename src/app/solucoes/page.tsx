@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useEffect, useRef } from "react";
-import { gsap } from "@/lib/gsap";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Nav from "../sections/Nav";
 import Footer from "../sections/Footer";

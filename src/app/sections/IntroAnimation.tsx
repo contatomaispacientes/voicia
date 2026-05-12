@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
-import { gsap } from "@/lib/gsap";
+import gsap from "gsap";
 
 export default function IntroAnimation() {
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -44,15 +44,7 @@ export default function IntroAnimation() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let renderer: any = null;
 
-    // Defer Three.js initialization until browser is idle
-    // This prevents blocking the main thread during initial page load (LCP/TBT)
-    const idleCb = typeof window !== "undefined" && "requestIdleCallback" in window
-      ? (window as any).requestIdleCallback
-      : (fn: () => void) => setTimeout(fn, 200);
-
-    idleCb(async () => {
-      if (disposed) return;
-
+    (async () => {
       const THREE = await import("three");
       const { GLTFLoader } = await import(
         // @ts-expect-error — three v0.134 export path

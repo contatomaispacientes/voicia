@@ -1,7 +1,10 @@
 ﻿"use client";
 
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   { quote: "A VoicIA transformou minha rotina. Antes eu passava mais tempo digitando do que olhando para o paciente. Agora consigo focar no que realmente importa.", name: "Dra. Mariana Costa", role: "Clínica Geral", initials: "MC" },

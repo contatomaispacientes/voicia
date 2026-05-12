@@ -1,20 +1,15 @@
-import dynamic from "next/dynamic";
 import Nav from "./sections/Nav";
 import Hero from "./sections/Hero";
-
-// IntroAnimation — Three.js (~600KB) isolado em chunk separado
-const IntroAnimation = dynamic(() => import("./sections/IntroAnimation"));
-
-// Seções abaixo do fold — chunks separados para reduzir bundle inicial
-const Metrics     = dynamic(() => import("./sections/Metrics"));
-const Features    = dynamic(() => import("./sections/Features"));
-const Advantages  = dynamic(() => import("./sections/Advantages"));
-const Security    = dynamic(() => import("./sections/Security"));
-const Testimonials = dynamic(() => import("./sections/Testimonials"));
-const Pricing     = dynamic(() => import("./sections/Pricing"));
-const Faq         = dynamic(() => import("./sections/Faq"));
-const CtaBanner   = dynamic(() => import("./sections/CtaBanner"));
-const Footer      = dynamic(() => import("./sections/Footer"));
+import IntroAnimation from "./sections/IntroAnimation";
+import Metrics from "./sections/Metrics";
+import Features from "./sections/Features";
+import Advantages from "./sections/Advantages";
+import Security from "./sections/Security";
+import Testimonials from "./sections/Testimonials";
+import Pricing from "./sections/Pricing";
+import Faq from "./sections/Faq";
+import CtaBanner from "./sections/CtaBanner";
+import Footer from "./sections/Footer";
 
 export default function Home() {
   return (
