@@ -32,7 +32,7 @@ const plans = [
   {
     name: "Pro",
     desc: "Para consultórios que querem escalar",
-    price: { monthly: "229,90", annual: "199,90" },
+    price: { monthly: "247,00", annual: "199,90" },
     label: "Mais popular",
     cta: "Agendar teste gratuito",
     highlighted: true,
@@ -69,7 +69,7 @@ const plans = [
 
 const faqs = [
   { q: "Posso testar antes de assinar?", a: "Sim. O plano Starter é gratuito para sempre e o plano Pro oferece 14 dias de teste gratuito sem necessidade de cartão de crédito." },
-  { q: "Como funciona a cobrança?", a: "A cobrança é mensal (R$ 229,90/mês) ou anual (R$ 199,90/mês, cobrado R$ 2.398,80/ano). Você pode cancelar a qualquer momento sem multa ou taxa de cancelamento." },
+  { q: "Como funciona a cobrança?", a: "A cobrança é mensal (R$ 247,00/mês) ou anual (R$ 199,90/mês, cobrado R$ 2.398,80/ano). Você pode cancelar a qualquer momento sem multa ou taxa de cancelamento." },
   { q: "Posso trocar de plano depois?", a: "Sim. Você pode fazer upgrade ou downgrade a qualquer momento. A diferença é calculada proporcionalmente ao período restante." },
   { q: "O plano Enterprise tem preço fixo?", a: "Não. O Enterprise é personalizado de acordo com o número de profissionais, integrações necessárias e nível de suporte. Entre em contato para um orçamento." },
   { q: "Meus dados migram entre planos?", a: "Sim. Todos os seus dados, prontuários e configurações são preservados ao trocar de plano. Nenhuma informação é perdida." },
@@ -152,7 +152,7 @@ export default function PrecosPage() {
                       }`}
                   >
                     Anual
-                    <span className="text-[10px] bg-white/20 px-1.5 py-0.5 rounded-full">-13%</span>
+                    <span className="text-[10px] bg-white/20 px-1.5 py-0.5 rounded-full">-19%</span>
                   </button>
                 </div>
               </div>
