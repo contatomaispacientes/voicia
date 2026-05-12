@@ -24,7 +24,7 @@ export default function Hero() {
     }
     const onDone = () => setIntroDone(true);
     window.addEventListener("intro-finished", onDone, { once: true });
-    const fallback = window.setTimeout(() => setIntroDone(true), 6000);
+    const fallback = window.setTimeout(() => setIntroDone(true), 3000);
     return () => {
       window.removeEventListener("intro-finished", onDone);
       window.clearTimeout(fallback);

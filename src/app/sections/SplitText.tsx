@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
 
 interface SplitTextProps {
   text: string;
@@ -32,62 +31,74 @@ export default function SplitText({
 
     const chars = Array.from(el.querySelectorAll<HTMLSpanElement>(".st-char"));
     const cursor = el.querySelector<HTMLSpanElement>(".st-cursor");
+    const ids: ReturnType<typeof setTimeout>[] = [];
 
-    // Use opacity instead of visibility — more reliable on iOS Safari
-    gsap.set(chars, { opacity: 0 });
-
-    if (cursor) {
-      gsap.set(cursor, { opacity: 0, display: "inline-block" });
-      if (chars[0]?.parentNode) {
-        chars[0].parentNode.insertBefore(cursor, chars[0]);
-      }
+    // Place cursor before first char (initially hidden)
+    if (cursor && chars[0]?.parentNode) {
+      chars[0].parentNode.insertBefore(cursor, chars[0]);
     }
 
-    const tl = gsap.timeline({ delay });
-
-    // Show cursor at the start
+    // Show cursor exactly when typing starts
     if (cursor) {
-      tl.set(cursor, { opacity: 1 }, 0);
+      const t = setTimeout(() => {
+        cursor.style.opacity = "1";
+      }, delay * 1000);
+      ids.push(t);
     }
 
+    // Reveal each char sequentially — pure setTimeout, zero GSAP
     chars.forEach((char, i) => {
-      const t = i * stagger;
-      // Reveal character
-      tl.set(char, { opacity: 1 }, t);
-      // Move cursor after this character
-      if (cursor) {
-        tl.call(
-          () => {
-            if (char.parentNode) {
-              char.parentNode.insertBefore(cursor, char.nextSibling);
-            }
-          },
-          [],
-          t
-        );
-      }
+      const t = setTimeout(() => {
+        char.style.opacity = "1";
+        // Move cursor right after this char
+        if (cursor && char.parentNode) {
+          char.parentNode.insertBefore(cursor, char.nextSibling);
+        }
+      }, (delay + i * stagger) * 1000);
+      ids.push(t);
     });
 
-    const totalTime = chars.length * stagger;
+    const totalMs = (delay + chars.length * stagger) * 1000;
 
     if (cursor) {
       if (hideCursorOnComplete) {
-        tl.set(cursor, { display: "none" }, totalTime);
+        // Hide cursor immediately when typing ends (pass baton to next SplitText)
+        const t = setTimeout(() => {
+          cursor.style.opacity = "0";
+          cursor.style.display = "none";
+        }, totalMs);
+        ids.push(t);
       } else {
-        tl.to(
-          cursor,
-          { opacity: 0, repeat: 5, yoyo: true, duration: 0.5, ease: "steps(1)" },
-          totalTime + 0.2
-        );
-        tl.set(cursor, { display: "none" }, totalTime + 3.5);
+        // Blink 6 times then disappear
+        let blinks = 0;
+        const blinkInterval = setInterval(() => {
+          cursor.style.opacity = cursor.style.opacity === "0" ? "1" : "0";
+          blinks++;
+          if (blinks >= 12) {
+            clearInterval(blinkInterval);
+            cursor.style.display = "none";
+          }
+        }, 500);
+
+        const t = setTimeout(() => {
+          // start blinking after typing ends
+        }, totalMs + 200);
+        ids.push(t);
+
+        // Store blinkInterval ref for cleanup
+        ids.push(blinkInterval as unknown as ReturnType<typeof setTimeout>);
       }
     }
 
     return () => {
-      tl.kill();
+      ids.forEach((id) => {
+        clearTimeout(id as ReturnType<typeof setTimeout>);
+        clearInterval(id as unknown as ReturnType<typeof setInterval>);
+      });
     };
   }, [delay, stagger, text, hideCursorOnComplete]);
 
+  // Group chars into words to prevent mid-word line breaks
   const words = text.split(" ");
   const chars: React.ReactNode[] = [];
 
@@ -115,7 +126,7 @@ export default function SplitText({
           className={`st-char inline-block ${charClassName}`}
           style={{ opacity: 0, whiteSpace: "pre" }}
         >
-          {" "}
+          {" "}
         </span>
       );
     }
