@@ -27,7 +27,7 @@ export default function Nav() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 h-[72px] flex items-center justify-between">
         <a href="/" className="flex items-center">
           <Image
-            src="/voicia-logo-dark-Jivt0OTZ.png"
+            src="/voicia-logo.png"
             alt="VoicIA"
             width={160}
             height={80}

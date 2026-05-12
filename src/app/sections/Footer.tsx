@@ -52,7 +52,7 @@ export default function Footer() {
           <div className="f-col col-span-2">
             <div className="flex items-center gap-3 mb-5">
               <Image
-                src="/voicia-logo-dark-Jivt0OTZ.png"
+                src="/voicia-logo.png"
                 alt="VoicIA"
                 width={160}
                 height={64}
