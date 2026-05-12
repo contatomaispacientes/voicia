@@ -26,17 +26,14 @@ export default function Nav() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 h-[72px] flex items-center justify-between">
         <a href="/" className="flex items-center">
-          <picture>
-            <source srcSet="/logo-icon.webp" type="image/webp" />
-            <Image
-              src="/logo-icon.png"
-              alt="VoicIA"
-              width={80}
-              height={80}
-              priority
-              className="h-18 sm:h-20 w-auto"
-            />
-          </picture>
+          <Image
+            src="/voicia-logo-dark-Jivt0OTZ.png"
+            alt="VoicIA"
+            width={160}
+            height={80}
+            priority
+            className="h-14 sm:h-16 w-auto"
+          />
         </a>
 
         <div className="hidden md:flex items-center gap-8">

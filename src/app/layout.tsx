@@ -24,6 +24,10 @@ export const metadata: Metadata = {
   description:
     "Automatize registros clínicos, foque no paciente e ganhe tempo. A plataforma completa de suporte médico com IA.",
   keywords: ["suporte médico", "IA médica", "prontuário automático", "transcrição médica", "VoicIA"],
+  icons: {
+    icon: "/icone_voicia.png",
+    apple: "/icone_voicia.png",
+  },
   openGraph: {
     title: "VoicIA | Suporte Médico de Atendimento Humanizado",
     description: "Automatize registros clínicos, foque no paciente e ganhe tempo.",
