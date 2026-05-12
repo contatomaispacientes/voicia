@@ -127,24 +127,22 @@ export default function Hero() {
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6 max-w-4xl min-h-[2.2em]">
             {introDone && (
               <>
-                <span className="grad-text">
-                  <SplitText
-                    text="Suporte médico de"
-                    delay={0.3}
-                    stagger={0.07}
-                    showCursor
-                    hideCursorOnComplete
-                  />
-                </span>
+                <SplitText
+                  text="Suporte médico de"
+                  delay={0.3}
+                  stagger={0.07}
+                  showCursor
+                  hideCursorOnComplete
+                  charClassName="text-white"
+                />
                 <br />
-                <span className="accent-text">
-                  <SplitText
-                    text="atendimento humanizado"
-                    delay={1.6}
-                    stagger={0.07}
-                    showCursor
-                  />
-                </span>
+                <SplitText
+                  text="atendimento humanizado"
+                  delay={1.6}
+                  stagger={0.07}
+                  showCursor
+                  charClassName="text-[#63AAA2]"
+                />
               </>
             )}
           </h1>
