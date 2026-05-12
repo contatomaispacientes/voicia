@@ -1,0 +1,80 @@
+# ─── VoicIA Performance .htaccess ────────────────────────────
+
+# ── Gzip compression ─────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml font/woff font/woff2
+</IfModule>
+
+# ── Browser caching ──────────────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML — curto (conteúdo muda com deploy)
+  ExpiresByType text/html                 "access plus 1 hour"
+
+  # CSS e JS com hash (imutáveis com static export)
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType text/javascript           "access plus 1 year"
+
+  # Imagens
+  ExpiresByType image/png                 "access plus 6 months"
+  ExpiresByType image/jpeg                "access plus 6 months"
+  ExpiresByType image/webp                "access plus 6 months"
+  ExpiresByType image/svg+xml             "access plus 6 months"
+  ExpiresByType image/x-icon              "access plus 1 year"
+
+  # Fontes
+  ExpiresByType font/woff                 "access plus 1 year"
+  ExpiresByType font/woff2                "access plus 1 year"
+  ExpiresByType application/font-woff     "access plus 1 year"
+  ExpiresByType application/font-woff2    "access plus 1 year"
+
+  # Outros
+  ExpiresByType application/json          "access plus 1 day"
+</IfModule>
+
+# ── Cache-Control headers ─────────────────────────────────────
+<IfModule mod_headers.c>
+  # Assets com hash → cache longo
+  <FilesMatch "\.(css|js|woff|woff2|ttf|otf|eot)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Imagens → cache médio
+  <FilesMatch "\.(png|jpg|jpeg|gif|webp|svg|ico)$">
+    Header set Cache-Control "public, max-age=15552000"
+  </FilesMatch>
+
+  # HTML → sem cache agressivo
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+
+  # Security headers
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# ── URL rewriting (trailingSlash) ─────────────────────────────
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Serve arquivos estáticos diretamente
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Redireciona /pagina → /pagina/ (trailingSlash)
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.+)$ /$1/ [R=301,L]
+</IfModule>
+
+# ── Prevent directory listing ─────────────────────────────────
+Options -Indexes
