@@ -103,7 +103,7 @@ export default function Advantages() {
             ))}
           </ul>
 
-          <a href="#precos" className="inline-flex px-7 py-3.5 rounded-xl bg-[#63AAA2] text-white font-semibold hover:bg-[#7BBFBA] hover:shadow-[0_0_40px_rgba(99,170,162,0.4)] transition-all">
+          <a href="https://app.voicia.com.br/" className="inline-flex px-7 py-3.5 rounded-xl bg-[#63AAA2] text-white font-semibold hover:bg-[#7BBFBA] hover:shadow-[0_0_40px_rgba(99,170,162,0.4)] transition-all">
             Agendar teste gratuito
           </a>
         </div>

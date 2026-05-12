@@ -278,7 +278,7 @@ export default function FaqPage() {
                   Tente buscar com termos diferentes ou explore as categorias acima.
                 </p>
                 <a
-                  href="#"
+                  href="https://app.voicia.com.br/"
                   className="inline-flex items-center gap-2 text-sm font-semibold text-[#63AAA2] hover:text-[#7BBFBA] transition-colors"
                 >
                   Falar com suporte
@@ -360,7 +360,7 @@ export default function FaqPage() {
                 </p>
               </div>
               <a
-                href="#"
+                href="https://app.voicia.com.br/"
                 className="shrink-0 px-6 py-3 rounded-xl bg-[#63AAA2] text-white text-sm font-semibold hover:bg-[#7BBFBA] hover:shadow-[0_0_30px_rgba(99,170,162,0.4)] transition-all"
               >
                 Falar com suporte

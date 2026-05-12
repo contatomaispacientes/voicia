@@ -163,7 +163,7 @@ export default function Hero() {
             style={{ opacity: 0 }}
           >
             <a
-              href="#precos"
+              href="https://app.voicia.com.br/"
               className="relative group px-8 py-4 rounded-xl bg-[#63AAA2] text-white font-semibold text-sm sm:text-base text-center overflow-hidden transition-all hover:bg-[#7BBFBA] hover:shadow-[0_0_50px_rgba(99,170,162,0.5)]"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">

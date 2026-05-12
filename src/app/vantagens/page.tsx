@@ -340,7 +340,7 @@ export default function VantagensPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <a
-                    href="/#precos"
+                    href="https://app.voicia.com.br/"
                     className="relative group px-8 py-4 rounded-xl bg-[#63AAA2] text-white font-semibold hover:bg-[#7BBFBA] hover:shadow-[0_0_50px_rgba(99,170,162,0.5)] transition-all overflow-hidden"
                   >
                     <span className="relative z-10">Agendar teste gratuito</span>

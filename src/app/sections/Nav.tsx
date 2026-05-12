@@ -45,8 +45,8 @@ export default function Nav() {
         </div>
 
         <div className="hidden md:flex items-center gap-5">
-          <a href="#" className="text-sm text-[#94A3B8] hover:text-white transition-colors">Login</a>
-          <a href="#precos" className="text-sm font-semibold px-5 py-2 rounded-lg bg-[#5BA8A2] text-white hover:bg-[#7BBFBA] transition-colors">
+          <a href="https://app.voicia.com.br/" className="text-sm text-[#94A3B8] hover:text-white transition-colors">Login</a>
+          <a href="https://app.voicia.com.br/" className="text-sm font-semibold px-5 py-2 rounded-lg bg-[#5BA8A2] text-white hover:bg-[#7BBFBA] transition-colors">
             Agendar demo
           </a>
         </div>
@@ -67,7 +67,7 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
-          <a href="#precos" className="block text-center py-2.5 rounded-lg bg-[#5BA8A2] text-white font-semibold">
+          <a href="https://app.voicia.com.br/" className="block text-center py-2.5 rounded-lg bg-[#5BA8A2] text-white font-semibold">
             Agendar demo
           </a>
         </div>

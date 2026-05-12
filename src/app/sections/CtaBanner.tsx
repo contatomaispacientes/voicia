@@ -91,10 +91,10 @@ export default function CtaBanner() {
             </p>
 
             <div className="c-buttons flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="#" className="px-8 py-4 rounded-xl bg-[#63AAA2] text-white font-semibold hover:bg-[#7BBFBA] hover:shadow-[0_0_50px_rgba(99,170,162,0.5)] transition-all">
+              <a href="https://app.voicia.com.br/" className="px-8 py-4 rounded-xl bg-[#63AAA2] text-white font-semibold hover:bg-[#7BBFBA] hover:shadow-[0_0_50px_rgba(99,170,162,0.5)] transition-all">
                 Agendar teste gratuito
               </a>
-              <a href="#" className="flex items-center gap-2 text-sm text-[#94A3B8] hover:text-[#63AAA2] transition-colors">
+              <a href="https://app.voicia.com.br/" className="flex items-center gap-2 text-sm text-[#94A3B8] hover:text-[#63AAA2] transition-colors">
                 Falar com especialista
                 <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path d="M5 12h14M12 5l7 7-7 7" />

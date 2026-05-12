@@ -107,7 +107,7 @@ export default function Pricing() {
                 ))}
               </ul>
 
-              <a href="#" className="block w-full text-center py-4 rounded-xl bg-[#63AAA2] text-white font-semibold hover:bg-[#7BBFBA] hover:shadow-[0_0_50px_rgba(99,170,162,0.5)] transition-all">
+              <a href="https://app.voicia.com.br/" className="block w-full text-center py-4 rounded-xl bg-[#63AAA2] text-white font-semibold hover:bg-[#7BBFBA] hover:shadow-[0_0_50px_rgba(99,170,162,0.5)] transition-all">
                 Começar agora — é grátis
               </a>
             </div>

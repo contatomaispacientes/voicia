@@ -262,7 +262,7 @@ export default function PrecosPage() {
 
                       {/* CTA */}
                       <a
-                        href="#"
+                        href="https://app.voicia.com.br/"
                         className={`block w-full text-center py-4 rounded-xl font-semibold transition-all ${plan.highlighted
                             ? "bg-[#63AAA2] text-white hover:bg-[#7BBFBA] hover:shadow-[0_0_50px_rgba(99,170,162,0.5)]"
                             : "border border-[#63AAA2]/25 text-[#CBD5E1] hover:border-[#63AAA2]/60 hover:text-white hover:bg-[#63AAA2]/5"
@@ -371,7 +371,7 @@ export default function PrecosPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <a
-                    href="#"
+                    href="https://app.voicia.com.br/"
                     className="relative group px-8 py-4 rounded-xl bg-[#63AAA2] text-white font-semibold hover:bg-[#7BBFBA] hover:shadow-[0_0_50px_rgba(99,170,162,0.5)] transition-all overflow-hidden"
                   >
                     <span className="relative z-10">Falar com especialista</span>
