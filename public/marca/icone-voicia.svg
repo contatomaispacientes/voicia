@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Símbolo da VoicIA (identidade de 09/11/2026): duas pétalas em V + ponto. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="b" x1="0" y1="0" x2=".35" y2="1">
+      <stop offset="0" stop-color="#7FE3C0"/><stop offset=".48" stop-color="#14A47E"/><stop offset="1" stop-color="#06624B"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="66" fill="url(#b)"/>
+  <g fill="#F2FBF7">
+    <path transform="translate(99 138) rotate(-27)" d="M0,-66 C32,-33 32,33 0,66 C-32,33 -32,-33 0,-66 Z"/>
+    <path transform="translate(157 138) rotate(27)" d="M0,-66 C32,-33 32,33 0,66 C-32,33 -32,-33 0,-66 Z"/>
+    <circle cx="128" cy="58" r="15"/>
+  </g>
+</svg>
