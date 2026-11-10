@@ -10,9 +10,10 @@ export const API_DOCS = `${APP}/api-docs`;
 export const PRECO = {
   mensal: "247",
   mensalCentavos: "00",
-  anual: "199",
-  anualCentavos: "90",
-  anualTotal: "2.398,80",
+  // Igual ao Stripe (lookup keys voicia_monthly / voicia_yearly), conferido em 10/11/2026.
+  anual: "197",
+  anualCentavos: "00",
+  anualTotal: "2.364,00",
   testeDias: 30,
 };
 

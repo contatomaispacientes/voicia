@@ -36,7 +36,7 @@ export function Planos({ escuro = false }: { escuro?: boolean }) {
               className={`rounded-full px-5 py-2 text-[14px] transition-colors ${anual === o.v ? "bg-[linear-gradient(180deg,#19B88C,#0B8A6A)] text-white shadow-[0_6px_18px_-6px_rgba(14,138,110,.7)]" : escuro ? "text-white/60 hover:text-white" : "text-texto-2 hover:text-texto"}`}
             >
               {o.t}
-              {o.v && <span className={`ml-2 rounded-full px-1.5 py-0.5 text-[11px] ${anual ? "bg-white/20" : "bg-verde-gelo text-verde-forte"}`}>−19%</span>}
+              {o.v && <span className={`ml-2 rounded-full px-1.5 py-0.5 text-[11px] ${anual ? "bg-white/20" : "bg-verde-gelo text-verde-forte"}`}>−20%</span>}
             </button>
           ))}
         </div>
